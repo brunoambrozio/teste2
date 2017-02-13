@@ -1,0 +1,66 @@
+<core:View xmlns="sap.m" xmlns:core="sap.ui.core" controllerName="br.com.oggettiva.controller.Master">
+	<Page title="{i18n>MasterTitle}" id="idPageMaster">
+		<subHeader>
+			<Bar>
+				<contentLeft>
+					<SearchField search="handleSearch" width="100%">
+					</SearchField>
+				</contentLeft>
+			</Bar>
+		</subHeader>
+		<PullToRefresh refresh="refreshData"/>
+		<List id="list" mode="{device>/listMode}" select="handleListSelect" items="{/results}" updateFinished="handleUpdateFinished">
+			<ObjectListItem type="{device>/listItemType}" press="handleListItemPress" title="{NumRequisicao}" number="{TipoReqTxt}">
+				<attributes>
+					<ObjectAttribute text="{Cname}"/>
+				</attributes>
+			</ObjectListItem>
+		</List>
+		<footer>
+			<Bar>
+				<contentRight>
+					<Select
+						id="groupSelect"
+						change="handleGroup"
+						icon="sap-icon://group-2"
+						type="IconOnly"
+						selectedKey="None"
+						autoAdjustWidth="true" >
+						<core:Item
+							key="None"
+							text="{i18n>Nenhum}"/>
+						<core:Item
+							key="RequisicaoTxt"
+							text="{i18n>Requisicao}"/>
+						<core:Item
+							key="TipoReqTxt"
+							text="{i18n>TipoRequisicao}"/>
+					</Select>
+					<!--<Select
+						id="filterSelect"
+						change="handleFilter"
+						icon="sap-icon://filter"
+						type="IconOnly"
+						selectedKey="None"
+						autoAdjustWidth="true" >
+					</Select>
+					<Select
+						id="sortSelect"
+						change="handleSort"
+						icon="sap-icon://sort"
+						type="IconOnly"
+						selectedKey="None"
+						autoAdjustWidth="true" >
+						<core:Item
+							key="None"
+							text="{i18n>Nenhum}"/>
+						<core:Item
+							key="TipoReqTxt"
+							text="{i18n>TipoRequisicao}"/>
+					</Select>					-->
+				</contentRight>
+			</Bar>
+		</footer>
+	<content/>
+	</Page>
+</core:View>

@@ -1,0 +1,23 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml" controllerName="br.com.oggettiva.controller.LineHistorico">
+	<App>
+		<pages>
+			<Page id="page" title=" {i18n>LineHistoricoTitle}" showNavButton="true" navButtonPress="handleNavBack">
+				<content>
+					<sap.ui.layout.form:SimpleForm editable="false" layout="ResponsiveGridLayout" xmlns:sap.ui.layout.form="sap.ui.layout.form" id="LineHistoricoForm">
+					    <sap.ui.layout.form:content xmlns:sap.ui.layout.form="sap.ui.layout.form">
+							<Label text="{i18n>Sequencia}" id="lbl_seq"/>
+							<Text text="{Sequencia}" id="txt_seq"/>
+							<Label text="{i18n>Responsavel}" id="lbl_responsavel"/>
+							<Text text="{Cname}" id="txt_responsavel"/>
+							<Label text="{i18n>Data}" id="lbl_data"/>
+							<Text id="txt_data" text="{ path: 'DataReal',
+									    		  	    formatter: 'br.com.oggettiva.util.Formatter.date' }"/>
+							<Label text="{i18n>Justificativa}" id="lbl_justificativa"/>	
+							<TextArea id="txa_justificativa" value="{Justificativa}" rows="10" cols="50" editable="false"/>
+				        </sap.ui.layout.form:content>
+					</sap.ui.layout.form:SimpleForm>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

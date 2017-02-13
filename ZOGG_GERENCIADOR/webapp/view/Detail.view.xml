@@ -1,0 +1,93 @@
+<core:View xmlns="sap.m" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core" controllerName="br.com.oggettiva.controller.Detail">
+	<Page title="{i18n>DetailTitle}" class="sapUiFioriObjectPage" showNavButton="{device>/isPhone}" navButtonPress="handleNavButtonPress">
+		<ObjectHeader title="{TipoReqTxt}" number="{NumRequisicao}">
+			<attributes>
+				<ObjectAttribute text="{Cname}"/>
+			</attributes>
+			<firstStatus>
+				<!--<ObjectStatus
+					text="{
+						path: 'LifecycleStatus',
+						formatter: 'br.com.oggettiva.util.Formatter.statusText'
+					}"
+					state="{
+						path: 'LifecycleStatus',
+						formatter: 'br.com.oggettiva.util.Formatter.statusState'
+					}" />-->
+			</firstStatus>
+		</ObjectHeader>
+		<IconTabBar expanded="{device>/isNoPhone}">
+			<items>
+				<IconTabFilter icon="sap-icon://supplier">
+					<form:SimpleForm id="SupplierForm" minWidth="1024">
+						<core:Title text="Address"/>
+						<Label text="Name"/>
+						<Text text="{CompanyName}"/>
+						<Label text="City"/>
+						<Text text="{City}, {PostalCode}"/>
+						<Label text="Street"/>
+						<Text text="{Street}"/>
+					</form:SimpleForm>
+				</IconTabFilter>				
+				<IconTabFilter icon="sap-icon://accelerated">
+					<Table headerText="{i18n>LineItemTableHeader}" items="{FluxoSet/results}">
+						<columns>
+							<Column>
+								<header><Label text="Seq"/></header>
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+								<header><Label text="Etapa"/></header>
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+								<header><Label text="Responsável"/></header>
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+								<header><Label text="Data"/></header>
+							</Column>							
+						</columns>
+						<ColumnListItem type="Navigation" press="handleLineItemPress">
+							<cells>
+								<ObjectIdentifier title="{Zseq}"/>
+								<Text text="{DescrAprov}"/>
+								<Text text="{Cname}"/>
+								<Text text="{DataReal}"/>																		
+							</cells>
+						</ColumnListItem>
+					</Table>
+				</IconTabFilter>
+				<IconTabFilter icon="sap-icon://notes">
+					<Table headerText="{i18n>LineItemTableHeader}" items="{HistoricoSet/results}">
+						<columns>
+							<Column>
+								<header><Label text="Seq"/></header>
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+								<header><Label text="Responsável"/></header>
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+								<header><Label text="Justificativa"/></header>
+							</Column>							
+						</columns>
+						<ColumnListItem type="Navigation" press="handleLineItemPress">
+							<cells>
+								<ObjectIdentifier title="{Sequencia}"/>
+								<Text text="{           path:'Cname'          }"/>
+								<Text text="{           path:'Justificativa'          }"/>																		
+							</cells>
+						</ColumnListItem>
+					</Table>
+				</IconTabFilter>
+				<IconTabFilter icon="sap-icon://attachment">
+
+				</IconTabFilter>				
+			</items>
+		</IconTabBar>
+		<footer>
+			<Bar>
+				<contentRight>
+					<Button text="{i18n>ApproveButtonText}" type="Accept" icon="sap-icon://accept" press="handleApprove"/>
+				</contentRight>
+			</Bar>
+		</footer>
+	</Page>
+</core:View>

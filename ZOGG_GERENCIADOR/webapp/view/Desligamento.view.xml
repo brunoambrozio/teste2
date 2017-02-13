@@ -1,0 +1,159 @@
+<core:View xmlns="sap.m" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core" controllerName="br.com.oggettiva.controller.Desligamento">
+	<Page title="{i18n>DetailTitle}" class="sapUiFioriObjectPage" showNavButton="{device>/isPhone}" navButtonPress="handleNavButtonPress">
+		<ObjectHeader title="{TipoReqTxt}" number="{NumRequisicao}">
+			<!--<attributes>
+				<ObjectAttribute text="{Cname}"/>
+			</attributes>-->
+		</ObjectHeader>
+		<IconTabBar expanded="{device>/isNoPhone}">
+			<items>
+				<IconTabFilter icon="sap-icon://supplier">
+					<content>
+					    <Panel id="panel_dados_requisicao" headerText="{i18n>DadosRequisicao}" backgroundDesign="Solid" expandable="true" expanded="true">
+					        <content>
+								<form:SimpleForm
+									id="DadosRequisicaoForm"
+									minWidth="1024" >
+									<Label text="{i18n>Solicitante}"/>
+									<Text text="{CnameSolicitante}" />
+									<Label text="{i18n>Empregado}"/>
+									<Text text="{DesligamentoSet/Cname}" />	
+								</form:SimpleForm>
+					        </content>
+					    </Panel>
+					    <Panel id="panel_desligamento" headerText="{i18n>Gerais}" expandable="true" expanded="true">
+					    <content>
+								<form:SimpleForm
+									id="GeraisForm"
+									minWidth="1024" >
+									<Label text="{i18n>MotivoMedida}" id="lbl_motivo_medida" />
+									<Text text="{DesligamentoSet/MotivoMedida}" id="txt_motivo_medida"/>
+									<Label text="{i18n>MotivoInternoMedida}" id="lbl_motivo_interno_medida" />
+									<Text text="{DesligamentoSet/MotivoInternoMedida}" id="txt_motivo_interno_medida"/>	
+									<Label text="{i18n>DataUltimoDiaTrab}" id="lbl_data_ultimo_dia_trab" />
+									<Text text="{DesligamentoSet/DataUltimoDiaTrab}" id="txt_data_ultimo_dia_trab"/>	
+									<Label text="{i18n>ReposicaoVaga}" id="lbl_reposicao_vaga" />
+									<Text text="{DesligamentoSet/Repos}" id="txt_reposicao_vaga"/>	
+									<Label text="{i18n>Confidencial}" id="lbl_confidencial" />
+									<Text text="{DesligamentoSet/Confidencial}" id="txt_confidencial"/>	
+									<Label text="{i18n>CumpriraAvisoPrevio}" id="lbl_cumprira_avso_previo" />
+									<Text text="{DesligamentoSet/CumpriraAvisoPrevio}" id="txt_cumprira_avso_previo"/>	
+									<Label text="{i18n>PreviaRescisao}" id="lbl_previa_rescisao" />
+									<Text text="{DesligamentoSet/PreviaRescisao}" id="txt__previa_rescisao"/>										
+								</form:SimpleForm>
+					    </content>
+					    </Panel>
+					    
+						<Panel id="panel_homologacao" headerText="{i18n>Homologacao}" expandable="true" expanded="true">
+					    <content>
+								<form:SimpleForm
+									id="HomologacaoForm"
+									minWidth="1024" >									
+									<Label text="{i18n>HomologacaoData}" id="lbl_homologacao_data" />
+									<Text text="{DesligamentoSet/HomologacaoData}" id="txt_homologacao_data"/>	
+									<Label text="{i18n>HomologacaoHora}" id="lbl_homologacao_hora" />
+									<Text text="{DesligamentoSet/HomologacaoHora}" id="txt_homologacao_hora"/>
+								</form:SimpleForm>
+					    </content>
+					    </Panel>
+										
+						<Panel id="panel_examemedico" headerText="{i18n>ExameMedico}" expandable="true" expanded="true">
+					    <content>
+								<form:SimpleForm
+									id="ExameMedicoForm"
+									minWidth="1024" >										
+									<Label text="{i18n>ExameMedicoData}" id="lbl_exame_medico_data" />
+									<Text text="{DesligamentoSet/ExameMedicoData}" id="txt_exame_medico_data"/>	
+									<Label text="{i18n>ExameMedicoHora}" id="lbl_exame_medico_hora" />
+									<Text text="{DesligamentoSet/ExameMedicoHora}" id="txt_exame_medico_hora"/>	
+									<Label text="{i18n>NumeroServico}" id="lbl_numero_servico" />
+									<Text text="{DesligamentoSet/NumeroServico}" id="txt_numero_servico"/>									
+								</form:SimpleForm>
+					    </content>
+					    </Panel>								
+				        <Panel id="panel_justificativa" headerText="{i18n>Justificativa}">
+				            <content>
+				                <TextArea id="ta_justificativa" rows="5" cols="50" value="{/justificativa}"/>
+				            </content>
+				        </Panel>
+					</content>
+				</IconTabFilter>				
+				<IconTabFilter icon="sap-icon://accelerated">
+					<Table headerText="{i18n>Cronograma}" items="{FluxoSet/results}">
+						<columns>
+							<Column>
+								<header><Label text="{i18n>Sequencia}"/></header>
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+								<header><Label text="{i18n>Etapa}"/></header>
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+								<header><Label text="{i18n>Responsavel}"/></header>
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+								<header><Label text="{i18n>Data}"/></header>
+							</Column>							
+						</columns>
+						<ColumnListItem type="Navigation">
+							<cells>
+								<ObjectIdentifier title="{Zseq}"/>
+								<Text text="{DescrAprov}"/>
+								<Text text="{Cname}"/>
+								<Text text="{ path: 'DataReal',
+											  formatter: 'br.com.oggettiva.util.Formatter.date' }"/>
+							</cells>
+						</ColumnListItem>
+					</Table>
+				</IconTabFilter>
+				<IconTabFilter icon="sap-icon://notes">
+					<Table headerText="{i18n>Historico}" items="{HistoricoSet/results}">
+						<columns>
+							<Column>
+								<header><Label text="{i18n>Sequencia}"/></header>
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+								<header><Label text="{i18n>Responsavel}"/></header>
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+								<header><Label text="{i18n>Justificativa}"/></header>
+							</Column>							
+						</columns>
+						<ColumnListItem type="Navigation" press="handleHistoricoPress">
+							<cells>
+								<ObjectIdentifier title="{Sequencia}"/>
+								<Text text="{Cname}"/>
+								<Text text="{Justificativa}"/>																		
+							</cells>
+						</ColumnListItem>
+					</Table>
+				</IconTabFilter>
+				<!--<IconTabFilter icon="sap-icon://attachment">
+					<Table headerText="{i18n>Anexos}" items="{AnexosSet/results}">
+						<columns>
+							<Column>
+								<header><Label text="{i18n>Arquivo}"/></header>
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+								<header><Label text="{i18n>Responsavel}"/></header>
+							</Column>							
+						</columns>
+						<ColumnListItem type="Navigation" press="openAttachment">
+							<cells>
+								<ObjectIdentifier title="{FilenameAux}"/>
+								<Text text="{Nome}"/>
+							</cells>
+						</ColumnListItem>
+					</Table>
+				</IconTabFilter>				-->
+			</items>
+		</IconTabBar>
+		<footer>
+			<Bar>
+				<contentRight>
+					<Button text="{i18n>Reprovar}" type="Reject" icon="sap-icon://decline" press="handleReprove"/>
+					<Button text="{i18n>Aprovar}" type="Accept" icon="sap-icon://accept" press="handleApprove"/>
+				</contentRight>
+			</Bar>
+		</footer>
+	</Page>
+</core:View>

@@ -1,0 +1,197 @@
+<core:View xmlns="sap.m" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core" controllerName="br.com.oggettiva.controller.Movimentacoes">
+	<Page title="{i18n>DetailTitle}" class="sapUiFioriObjectPage" showNavButton="{device>/isPhone}" navButtonPress="handleNavButtonPress">
+		<ObjectHeader title="{TipoReqTxt}" number="{NumRequisicao}">
+			<!--<attributes>
+				<ObjectAttribute text="{Cname}"/>
+			</attributes>-->
+		</ObjectHeader>
+		<IconTabBar expanded="{device>/isNoPhone}">
+			<items>
+				<IconTabFilter icon="sap-icon://supplier">
+					<content>
+					    <Panel id="panel_dados_requisicao" headerText="{i18n>DadosRequisicao}" backgroundDesign="Solid" expandable="true" expanded="true">
+					        <content>
+								<form:SimpleForm
+									id="DadosRequisicaoForm"
+									minWidth="1024" >
+									<Label text="{i18n>Solicitante}"/>
+									<Text text="{CnameSolicitante}" />
+									<Label text="{i18n>Empregado}"/>
+									<Text text="{MovColabAtual/Cname}" />	
+								</form:SimpleForm>
+					        </content>
+					    </Panel>
+					    <Panel id="panel_situacao_atual" headerText="{i18n>SituacaoAtual}" expandable="true" expanded="true">
+					    <content>
+								<form:SimpleForm
+									id="SituacaoAtualForm"
+									minWidth="1024" >
+									<Label text="{i18n>Posicao}" id="lbl_posicao_sa" />
+									<Text text="{MovColabAtual/Plans} - {MovColabAtual/PlansTxt}" id="txt_posicao_sa"/>
+									<Label text="{i18n>UOrganizacional}" id="lbl_uo_sa"/>
+									<Text text="{MovColabAtual/Orgeh} - {MovColabAtual/OrgehTxt}" id="txt_uo_sa"/>
+									<Label text="{i18n>CentroCusto}" id="lbl_cc_sa"/>
+									<Text text="{MovColabAtual/Kostl} - {MovColabAtual/KostlTxt}" id="txt_cc_sa"/>	
+									<Label text="{i18n>Cargo}" id="lbl_cargo_sa"/>
+									<Text text="{MovColabAtual/Stell} - {MovColabAtual/StellTxt}" id="txt_cargo_sa"/>
+									<Label text="{i18n>SalarioAtual}" id="lbl_sal_atual_sa" visible="{visibilityFieldsMov>/SalarioAtual}"/>
+									<Text text="{MovColabAtual/Bet01}" id="txt_sal_atual_sa" visible="{visibilityFieldsMov>/SalarioAtual}"/>
+									<Label text="{i18n>FaixaMinima}" id="lbl_fx_min_sa" visible="{visibilityFieldsMov>/FaixaMinima}"/>
+									<Text text="{MovColabAtual/Slmin}" id="txt_fx_min_sa" visible="{visibilityFieldsMov>/FaixaMinima}"/>
+									<Label text="{i18n>FaixaReferencia}" id="lbl_fx_ref_sa" visible="{visibilityFieldsMov>/FaixaReferencia}"/>
+									<Text text="{MovColabAtual/Slref}" id="txt_fx_ref_sa" visible="{visibilityFieldsMov>/FaixaReferencia}"/>
+									<Label text="{i18n>FaixaMaxima}" id="lbl_fx_max_sa" visible="{visibilityFieldsMov>/FaixaMaxima}"/>
+									<Text text="{MovColabAtual/Slmax}" id="txt_fx_max_sa" visible="{visibilityFieldsMov>/FaixaMaxima}"/>					        	
+								</form:SimpleForm>
+
+					    </content>
+					    </Panel>
+					    <Panel id="panel_situacao_prop" headerText="{i18n>SituacaoProposta}" expandable="true" expanded="true">
+					    <content>
+								<form:SimpleForm
+									id="SituacaoPropForm"
+									minWidth="1024" >
+									<Label text="{i18n>Posicao}" id="lbl_posicao_sp" />
+									<Text text="{MovColabProp/Plans} - {MovColabProp/PlansTxt}" id="txt_posicao_sp"/>
+									<Label text="{i18n>UOrganizacional}" id="lbl_uo_sp"/>
+									<Text text="{MovColabProp/Orgeh} - {MovColabProp/OrgehTxt}" id="txt_uo_sp"/>
+									<Label text="{i18n>CentroCusto}" id="lbl_cc_sp"/>
+									<Text text="{MovColabProp/Kostl} - {MovColabProp/KostlTxt}" id="txt_cc_sp"/>	
+									<Label text="{i18n>Cargo}" id="lbl_cargo_sp"/>
+									<Text text="{MovColabProp/Stell} - {MovColabProp/StellTxt}" id="txt_cargo_sp"/>
+									<Label text="{i18n>SalarioProposto}" id="lbl_sal_Prop_sp" visible="{visibilityFieldsMov>/SalarioProposto}"/>
+									<Text text="{MovColabProp/Bet01}" id="txt_sal_Prop_sp" visible="{visibilityFieldsMov>/SalarioProposto}"/>
+									<Label text="{i18n>FaixaMinima}" id="lbl_fx_min_sp" visible="{visibilityFieldsMov>/FaixaMinima}"/>
+									<Text text="{MovColabProp/SlminEdit}" id="txt_fx_min_sp" visible="{visibilityFieldsMov>/FaixaMinima}"/>
+									<Label text="{i18n>FaixaReferencia}" id="lbl_fx_ref_sp" visible="{visibilityFieldsMov>/FaixaReferencia}"/>
+									<Text text="{MovColabProp/SlrefEdit}" id="txt_fx_ref_sp" visible="{visibilityFieldsMov>/FaixaReferencia}"/>
+									<Label text="{i18n>FaixaMaxima}" id="lbl_fx_max_sp" visible="{visibilityFieldsMov>/FaixaMaxima}"/>
+									<Text text="{MovColabProp/SlmaxEdit}" id="txt_fx_max_sp" visible="{visibilityFieldsMov>/FaixaMaxima}"/>
+									<Label text="{i18n>NumeroParcelas}" id="lbl_nro_parcelas" visible="{visibilityFieldsMov>/NumeroParcelas}"/>
+									<Text text="{MovColabProp/ReajNparcelas}" id="txt_nro_parcelas" visible="{visibilityFieldsMov>/NumeroParcelas}"/>					        	
+									<Label text="{i18n>PorcReajuste}" id="lbl_porc_reaj" visible="{visibilityFieldsMov>/PorcReajuste}"/>
+									<Text text="{MovColabProp/ReajPorc}" id="txt_porc_reaj" visible="{visibilityFieldsMov>/PorcReajuste}"/>					        	
+									<Label text="{i18n>ReajusteTotal}" id="lbl_reaj_total" visible="{visibilityFieldsMov>/ReajusteTotal}"/>
+									<Text text="{MovColabProp/ReajTotal}" id="txt_reaj_total" visible="{visibilityFieldsMov>/ReajusteTotal}"/>					        	
+									<Label text="{i18n>Motivo}" id="lbl_motivo"/>
+									<Text text="{MovColabProp/Motcplan}" id="txt_motivo"/>					        	
+									<Label text="{i18n>Vigencia}" id="lbl_vigencia"/>
+									<Text text="{MovColabProp/Vigencia}" id="txt_vigencia"/>					        	
+								</form:SimpleForm>
+
+
+					       <!-- <Label text="{i18n>Posicao}" width="100%" id="lbl_posicao_sp" design="Bold"/>
+					        <Text text="{MovColabProp/Plans} - {MovColabProp/PlansTxt}" maxLines="0" id="txt_posicao_sp"/>
+					        <Label text="{i18n>UOrganizacional}" width="100%" id="lbl_uo_sp" design="Bold"/>
+					        <Text text="{MovColabProp/Orgeh} - {MovColabProp/OrgehTxt}" maxLines="0" id="txt_uo_sp"/>
+					    	<Label text="{i18n>CentroCusto}" width="100%" id="lbl_cc_sp" design="Bold"/>
+					        <Text text="{MovColabProp/Kostl} - {MovColabProp/KostlTxt}" maxLines="0" id="txt_cc_sp"/>
+					        <Label text="{i18n>Cargo}" width="100%" id="lbl_cargo_sp" design="Bold"/>
+					        <Text text="{MovColabProp/Stell} - {MovColabProp/StellTxt}" maxLines="0" id="txt_cargo_sp"/>
+					        <Label text="{i18n>SalarioProposto}" width="100%" id="lbl_sal_atual_sp" design="Bold"/>
+					        <Text text="{MovColabProp/Bet01}" maxLines="0" id="txt_sal_atual_sp"/>
+					        <Label text="{i18n>FaixaMinima}" width="100%" id="lbl_fx_min_sp" design="Bold"/>
+					        <Text text="{MovColabProp/SlminEdit}" maxLines="0" id="txt_fx_min_sp"/>
+					        <Label text="{i18n>FaixaReferencia}" width="100%" id="lbl_fx_ref_sp" design="Bold"/>
+					        <Text text="{MovColabProp/SlrefEdit}" maxLines="0" id="txt_fx_ref_sp"/>
+					        <Label text="{i18n>FaixaMaxima}" width="100%" id="lbl_fx_max_sp" design="Bold"/>
+					        <Text text="{MovColabProp/SlmaxEdit}" maxLines="0" id="txt_fx_max_sp"/>
+					        <Label text="{i18n>NumeroParcelas}" width="100%" id="lbl_nro_parcelas" design="Bold"/>
+					        <Text text="{MovColabProp/ReajNparcelas}" maxLines="0" id="txt_nro_parcelas"/>		
+					        <Label text="{i18n>PorcReajuste}" width="100%" id="lbl_porc_reaj" design="Bold"/>
+					        <Text text="{MovColabProp/ReajPorc}" maxLines="0" id="txt_porc_reaj"/>
+					        <Label text="{i18n>ReajusteTotal}" width="100%" id="lbl_reaj_total" design="Bold"/>
+					        <Text text="{MovColabProp/ReajTotal}" maxLines="0" id="txt_reaj_total"/>
+					        <Label text="{i18n>Motivo}" width="100%" id="lbl_motivo" design="Bold"/>
+					        <Text text="{MovColabProp/Motcplan}" maxLines="0" id="txt_motivo"/>
+					        <Label text="{i18n>Vigencia}" width="100%" id="lbl_vigencia" design="Bold"/>
+					        <Text text="{MovColabProp/Vigencia}" maxLines="0" id="txt_vigencia"/>
+					        -->
+					    </content>
+					    </Panel>
+				        <Panel id="panel_justificativa" headerText="{i18n>Justificativa}">
+				            <content>
+				                <TextArea id="ta_justificativa" rows="5" cols="50" value="{/justificativa}"/>
+				            </content>
+				        </Panel>
+					</content>
+				</IconTabFilter>				
+				<IconTabFilter icon="sap-icon://accelerated">
+					<Table headerText="{i18n>Cronograma}" items="{FluxoSet/results}">
+						<columns>
+							<Column>
+								<header><Label text="{i18n>Sequencia}"/></header>
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+								<header><Label text="{i18n>Etapa}"/></header>
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+								<header><Label text="{i18n>Responsavel}"/></header>
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+								<header><Label text="{i18n>Data}"/></header>
+							</Column>							
+						</columns>
+						<ColumnListItem type="Navigation">
+							<cells>
+								<ObjectIdentifier title="{Zseq}"/>
+								<Text text="{DescrAprov}"/>
+								<Text text="{Cname}"/>
+								<Text text="{ path: 'DataReal',
+											  formatter: 'br.com.oggettiva.util.Formatter.date' }"/>
+							</cells>
+						</ColumnListItem>
+					</Table>
+				</IconTabFilter>
+				<IconTabFilter icon="sap-icon://notes">
+					<Table headerText="{i18n>Historico}" items="{HistoricoSet/results}">
+						<columns>
+							<Column>
+								<header><Label text="{i18n>Sequencia}"/></header>
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+								<header><Label text="{i18n>Responsavel}"/></header>
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+								<header><Label text="{i18n>Justificativa}"/></header>
+							</Column>							
+						</columns>
+						<ColumnListItem type="Navigation" press="handleHistoricoPress">
+							<cells>
+								<ObjectIdentifier title="{Sequencia}"/>
+								<Text text="{Cname}"/>
+								<Text text="{Justificativa}"/>																		
+							</cells>
+						</ColumnListItem>
+					</Table>
+				</IconTabFilter>
+				<!--<IconTabFilter icon="sap-icon://attachment">
+					<Table headerText="{i18n>Anexos}" items="{AnexosSet/results}">
+						<columns>
+							<Column>
+								<header><Label text="{i18n>Arquivo}"/></header>
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+								<header><Label text="{i18n>Responsavel}"/></header>
+							</Column>							
+						</columns>
+						<ColumnListItem type="Navigation" press="openAttachment">
+							<cells>
+								<ObjectIdentifier title="{FilenameAux}"/>
+								<Text text="{Nome}"/>
+							</cells>
+						</ColumnListItem>
+					</Table>
+				</IconTabFilter>				-->
+			</items>
+		</IconTabBar>
+		<footer>
+			<Bar>
+				<contentRight>
+					<Button text="{i18n>Reprovar}" type="Reject" icon="sap-icon://decline" press="handleReprove"/>
+					<Button text="{i18n>Aprovar}" type="Accept" icon="sap-icon://accept" press="handleApprove"/>
+				</contentRight>
+			</Bar>
+		</footer>
+	</Page>
+</core:View>
